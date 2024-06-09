@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="module">
+    import { reactive } from './reactivity/reactive.js';
+    import { effect } from './reactivity/reactiveEffect.js';
+
+    const proxy = reactive({name: 'jrd', age: 18, detail: {mother: 'lj'}});
+
+    effect(() => {
+        document.querySelector('#app').innerText = proxy.detail.mother;
+    })
+
+    setTimeout(() => {
+        proxy.detail.mother = 'lijing'
+    }, 2000)
+    </script>
+</body>
+</html>
